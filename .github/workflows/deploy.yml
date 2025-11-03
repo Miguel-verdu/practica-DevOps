@@ -1,0 +1,29 @@
+name: 🚀 Despliegue automático de mi portfolio
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Descargar código
+      uses: actions/checkout@v4
+      
+    - name: ⚙️ Configurar GitHub Pages
+      uses: actions/configure-pages@v4
+      
+    - name: 📦 Subir archivos
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.'
+        
+    - name: 🌐 Desplegar a GitHub Pages
+      uses: actions/deploy-pages@v4
