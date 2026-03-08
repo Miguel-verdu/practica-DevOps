@@ -313,13 +313,13 @@ GitHub Pages convierte los archivos HTML en un sitio web accesible desde cualqui
 ### e) Muestra mensajes de commit que evidencien la configuración del workflow
 
 ```
-Añadir workflow de GitHub Actions para generación y publicación de JavaDoc
-Fix: añadir permisos de ejecución a gradlew en el workflow
-Fix: cambiar Java 25 a 21 en build.gradle y workflow por incompatibilidad con Gradle
-Fix: activar permisos de escritura en GitHub Actions para publicar en gh-pages
+Update GitHub Actions for JavaDoc generation and deployment
+Add permission change for gradlew in deploy workflow
+Update Gradle distribution URL to version 8.14
+Downgrade Java language version to 21
+Change Java version from 25 to 21 in deploy.yml
+Update Java version from 25 to 21 in deploy workflow
 ```
-
-Sí son claros y descriptivos porque indican exactamente **qué se hizo** ("añadir permisos", "cambiar Java 25 a 21") y en los commits de corrección también **por qué** ("por incompatibilidad con Gradle"). Están escritos en imperativo, que es el formato recomendado por las convenciones de Git, y permiten entender la evolución del proyecto sin necesidad de abrir cada commit.
 
 ---
 
