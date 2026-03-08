@@ -197,6 +197,9 @@ Cada vez que se hace `git push` a la rama `main`, el workflow se ejecuta automá
 | 3 | `chmod +x gradlew` | Da permisos de ejecución al wrapper de Gradle (necesario en GitHub Actions, ya que este usa Linux) |
 | 4 | `./gradlew javadoc` | Genera la documentación HTML con JavaDoc |
 | 5 | `peaceiris/actions-gh-pages@v3` | Publica el contenido de `build/docs/javadoc` en la rama `gh-pages`. PeaceIris es una colección de GH Actions creada por el usuario del mismo nombre. |
+| 6 | `${{ secrets.GITHUB_TOKEN }}` | GITHUB_TOKEN es un token de autenticación automático que GitHub crea para cada workflow de GitHub Actions. Sirve para que las acciones dentro del workflow puedan interactuar con el repositorio de forma segura.
+
+En otras palabras: es como una contraseña temporal que permite a los scripts del workflow hacer cosas en tu repo. |
 
 **Acción `peaceiris/actions-gh-pages@v3`:**
 
