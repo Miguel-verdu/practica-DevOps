@@ -18,6 +18,9 @@ jobs:
           java-version: '25'
           distribution: 'temurin'
 
+      - name: Dar permisos a gradlew
+        run: chmod +x gradlew
+
       - name: Generar JavaDoc con Gradle
         run: ./gradlew javadoc
 
