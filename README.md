@@ -255,8 +255,6 @@ Change Java version from 25 to 21 in deploy.yml
 Update Java version from 25 to 21 in deploy workflow
 ```
 
-Los mensajes están escritos en **modo imperativo** ("Añadir", "Fix", "Actualizar"), son descriptivos e indican exactamente qué se hizo y por qué, siguiendo las buenas prácticas de control de versiones.
-
 ---
 
 ## Cuestionario de evaluación
