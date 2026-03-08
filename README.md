@@ -176,7 +176,7 @@ La documentación JavaDoc generada automáticamente está publicada y accesible 
 
 ### d) Explicación del workflow
 
-El workflow está definido en [`.github/workflows/deploy.yml`](.github/workflows/javadoc.yml) y se encarga de generar y publicar la documentación de forma automática.
+El workflow está definido en [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) y se encarga de generar y publicar la documentación de forma automática.
 
 **Evento que lo dispara:**
 
