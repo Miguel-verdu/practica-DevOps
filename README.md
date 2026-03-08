@@ -247,12 +247,12 @@ jobs:
 A continuación se muestran los mensajes de commit realizados durante la configuración de la documentación y el workflow:
 
 ```
-Añadir comentarios JavaDoc a todas las clases y métodos del proyecto
-Añadir workflow de GitHub Actions para generación y publicación de JavaDoc
-Fix: añadir permisos de ejecución a gradlew en el workflow
-Fix: cambiar Java 25 a 21 en build.gradle y workflow por incompatibilidad con Gradle
-Fix: actualizar Gradle a 8.14 para compatibilidad con Java 21
-Fix: activar permisos de escritura en GitHub Actions para publicar en gh-pages
+Update GitHub Actions for JavaDoc generation and deployment
+Add permission change for gradlew in deploy workflow
+Update Gradle distribution URL to version 8.14
+Downgrade Java language version to 21
+Change Java version from 25 to 21 in deploy.yml
+Update Java version from 25 to 21 in deploy workflow
 ```
 
 Los mensajes están escritos en **modo imperativo** ("Añadir", "Fix", "Actualizar"), son descriptivos e indican exactamente qué se hizo y por qué, siguiendo las buenas prácticas de control de versiones.
