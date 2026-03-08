@@ -194,7 +194,7 @@ Cada vez que se hace `git push` a la rama `main`, el workflow se ejecuta automá
 |---|---|---|
 | 1 | `actions/checkout@v3` | Descarga el código del repositorio en el servidor de GitHub |
 | 2 | `actions/setup-java@v3` | Instala Java 21 (distribución Temurin) en el servidor |
-| 3 | `chmod +x gradlew` | Da permisos de ejecución al wrapper de Gradle (necesario en Linux) |
+| 3 | `chmod +x gradlew` | Da permisos de ejecución al wrapper de Gradle (necesario en GitHub Actions, ya que este usa Linux) |
 | 4 | `./gradlew javadoc` | Genera la documentación HTML con JavaDoc |
 | 5 | `peaceiris/actions-gh-pages@v3` | Publica el contenido de `build/docs/javadoc` en la rama `gh-pages` |
 
