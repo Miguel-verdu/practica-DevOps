@@ -226,10 +226,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Dar permisos a gradlew
-        run: chmod +x gradlew <-Da permisos al gradlew en Linux, que es donde funciona GH Actions
+        run: chmod +x gradlew
 
       - name: Generar JavaDoc con Gradle
-        run: ./gradlew javadoc <-Genera la documentación HTML
+        run: ./gradlew javadoc
 
       - name: Publicar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
