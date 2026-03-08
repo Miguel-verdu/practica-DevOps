@@ -136,7 +136,7 @@ public Ticket actualizarEstado(Long id, EstadoTicket nuevoEstado) { ... }
 /**
  * Controlador REST para la gestión completa de tickets de soporte.
  *
- * @author Equipo de Desarrollo
+ * @author Miguel Verdú Pacheco
  * @version 1.0
  * @since 1.0
  * @see TicketService
