@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Importar configuración por defecto de Spring Boot -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!-- Variables útiles -->
+    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}"/>
+    <property name="LOG_FILE_MAX_SIZE" value="10MB"/>
+    <property name="LOG_FILE_MAX_HISTORY" value="10"/>
+
+    <!-- Patrón de log con información de rastrabilidad -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%X{operacion_id}] - %msg%n"/>
+    <property name="LOG_FILE_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{operacion_id}] [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- ===== APPENDER PARA CONSOLA ===== -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ===== APPENDER PARA ARCHIVO (TODOS LOS LOGS) ===== -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+        <encoder>
+            <pattern>${LOG_FILE_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}/}}spring-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+            <totalSizeCap>100MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- ===== APPENDER PARA ERRORES (ERROR y WARN) ===== -->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}/}}errors.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${LOG_FILE_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}/}}errors-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- ===== APPENDER ESPECÍFICO PARA APLICACIÓN ===== -->
+    <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}/}}application.log</file>
+        <encoder>
+            <pattern>${LOG_FILE_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}/}}application-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- ===== CONFIGURACIÓN DE LOGGERS ===== -->
+    
+    <!-- Logger para la aplicación principal (nivel DEBUG para desarrollo) -->
+    <logger name="com.example.demo" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="APP_FILE"/>
+    </logger>
+
+    <!-- Logger para Spring Framework (más silencioso) -->
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.boot" level="INFO"/>
+    <logger name="org.springframework.web" level="INFO"/>
+
+    <!-- Logger para Hibernate (menos verbose) -->
+    <logger name="org.hibernate" level="INFO"/>
+
+    <!-- Logger por defecto de la aplicación -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </root>
+
+    <!-- ===== PERFILES DE SPRING ===== -->
+    
+    <!-- Perfil de desarrollo: logeo más detallado -->
+    <springProfile name="dev">
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="ERROR_FILE"/>
+        </root>
+    </springProfile>
+
+    <!-- Perfil de producción: menos verbose, sin console -->
+    <springProfile name="prod">
+        <root level="WARN">
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="ERROR_FILE"/>
+        </root>
+        <logger name="com.example.demo" level="INFO"/>
+    </springProfile>
+
+</configuration>
