@@ -1,6 +1,6 @@
 # 🎫 Sistema de Gestión de Tickets
 
-Aplicación REST desarrollada con **Spring Boot** y **Gradle** que permite crear, consultar, actualizar y eliminar tickets de soporte técnico. Incluye un sistema de diagnóstico y monitoreo del estado de la aplicación.
+Aplicación REST desarrollada con **Spring Boot** y **Gradle** que se realizó en grupo durante la duración de las prácticas. Permite crear, consultar, actualizar y eliminar tickets de soporte técnico. Incluye un sistema de diagnóstico y monitoreo del estado de la aplicación.
 
 ---
 
