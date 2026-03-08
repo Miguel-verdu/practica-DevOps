@@ -196,7 +196,7 @@ Cada vez que se hace `git push` a la rama `main`, el workflow se ejecuta automá
 | 2 | `actions/setup-java@v3` | Instala Java 21 (distribución Temurin) en el servidor |
 | 3 | `chmod +x gradlew` | Da permisos de ejecución al wrapper de Gradle (necesario en GitHub Actions, ya que este usa Linux) |
 | 4 | `./gradlew javadoc` | Genera la documentación HTML con JavaDoc |
-| 5 | `peaceiris/actions-gh-pages@v3` | Publica el contenido de `build/docs/javadoc` en la rama `gh-pages` |
+| 5 | `peaceiris/actions-gh-pages@v3` | Publica el contenido de `build/docs/javadoc` en la rama `gh-pages`. PeaceIris es una colección de GH Actions creada por el usuario del mismo nombre. |
 
 **Acción `peaceiris/actions-gh-pages@v3`:**
 
@@ -226,10 +226,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Dar permisos a gradlew
-        run: chmod +x gradlew
+        run: chmod +x gradlew <-Da permisos al gradlew en Linux, que es donde funciona GH Actions
 
       - name: Generar JavaDoc con Gradle
-        run: ./gradlew javadoc
+        run: ./gradlew javadoc <-Genera la documentación HTML
 
       - name: Publicar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
