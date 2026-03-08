@@ -14,7 +14,6 @@ Aplicación REST desarrollada con **Spring Boot** y **Gradle** que se realizó e
 - [Ejemplos de código documentado](#ejemplos-de-código-documentado)
 - [Mensajes de commit](#mensajes-de-commit)
 - [Cuestionario de evaluación](#cuestionario-de-evaluación)
-- [Conclusiones](#conclusiones)
 
 ---
 
