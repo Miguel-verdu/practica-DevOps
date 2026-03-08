@@ -351,12 +351,6 @@ El workflow implementa **CI/CD** (Integración Continua y Despliegue Continuo) p
 
 **Despliegue Continuo (CD):** tras generar la documentación, el workflow la publica automáticamente en GitHub Pages sin intervención humana. El resultado está disponible públicamente en cuestión de minutos tras cada `push`.
 
-**El evento que dispara todo el proceso** es:
-```yaml
-on:
-  push:
-    branches: [ main ]
-```
 
 Esto es despliegue continuo porque el paso desde el código hasta la documentación publicada y accesible públicamente es completamente automático: el desarrollador solo tiene que hacer `git push` y el resto lo gestiona el workflow.
 
