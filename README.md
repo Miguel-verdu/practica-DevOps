@@ -261,13 +261,13 @@ Update Java version from 25 to 21 in deploy workflow
 
 ### a) ¿Qué herramienta utilizaste para crear la documentación HTML?
 
-Se utilizó **JavaDoc**, la herramienta oficial incluida en el JDK de Java. Se ejecuta a través de Gradle con el comando `./gradlew javadoc`, que invoca internamente la tarea `javadoc` del plugin de Java de Gradle. JavaDoc lee los comentarios `/** ... */` del código fuente y genera un sitio web HTML estático completamente navegable.
+Se utilizó **JavaDoc**, la herramienta oficial incluida en el JDK de Java. Se ejecuta a través de Gradle con el comando `./gradlew javadoc`. JavaDoc lee los comentarios `/** ... */` del código fuente y genera un sitio web HTM de manera automática.
 
 ---
 
 ### b) Muestra un fragmento de código documentado y comenta el estilo utilizado
 
-El estilo utilizado es **JavaDoc estándar**, el formato oficial y más extendido en el ecosistema Java.
+El estilo utilizado es **JavaDoc estándar**, el formato oficial y más extendido.
 
 ```java
 /**
@@ -291,7 +291,7 @@ El comentario comienza con `/**` y cierra con `*/`. La primera parte es la descr
 
 Se realizaron dos configuraciones:
 
-**En el workflow** (`.github/workflows/javadoc.yml`): se usa la acción `peaceiris/actions-gh-pages@v3`, que toma la carpeta `./build/docs/javadoc` generada por Gradle y la sube automáticamente a la rama `gh-pages` del repositorio usando el `GITHUB_TOKEN`.
+**En el workflow** (`.github/workflows/deploy.yml`): se usa la acción `peaceiris/actions-gh-pages@v3`, que toma la carpeta `./build/docs/javadoc` generada por Gradle y la sube automáticamente a la rama `gh-pages` del repositorio usando el `GITHUB_TOKEN`.
 
 **En GitHub** (Settings → Pages): se configuró la fuente de publicación como la rama `gh-pages`, carpeta raíz `/`. A partir de ese momento, GitHub sirve automáticamente el contenido de esa rama como un sitio web público en `https://miguel-verdu.github.io/RecuperacionP01-MVP/`.
 
@@ -320,6 +320,7 @@ Downgrade Java language version to 21
 Change Java version from 25 to 21 in deploy.yml
 Update Java version from 25 to 21 in deploy workflow
 ```
+Sí son claros y descriptivos porque indican exactamente qué se hizo ("añadir permisos", "cambiar Java 25 a 21") y en los commits de corrección también por qué ("por incompatibilidad con Gradle"). Están escritos en imperativo, permitiendo entender la evolución del proyecto sin necesidad de abrir cada commit.
 
 ---
 
@@ -360,14 +361,3 @@ Esto es despliegue continuo porque el paso desde el código hasta la documentaci
 
 ---
 
-## Conclusiones
-
-Durante el desarrollo de esta práctica he aprendido y consolidado los siguientes conceptos:
-
-**Sobre JavaDoc:** es una herramienta muy potente incluida en el propio JDK que permite generar documentación profesional directamente desde los comentarios del código. Usar etiquetas estructuradas como `@param`, `@return` y `@throws` no solo genera HTML útil, sino que también mejora la legibilidad del código para otros desarrolladores.
-
-**Sobre GitHub Actions:** permite automatizar cualquier tarea del ciclo de vida del software mediante workflows declarados en archivos YAML. He aprendido que pequeños detalles como los permisos de los archivos (`chmod`) o la compatibilidad entre versiones de Java y Gradle son críticos para que el workflow funcione correctamente.
-
-**Sobre GitHub Pages:** es una solución gratuita y muy sencilla para publicar documentación estática. Al integrarlo con GitHub Actions, conseguimos que la documentación se publique automáticamente con cada cambio en el código, eliminando cualquier proceso manual.
-
-**Sobre CI/CD:** he comprendido en la práctica qué significa la integración y el despliegue continuos. Un simple `git push` desencadena toda la cadena: generación de documentación → publicación en Pages → disponibilidad pública. Esto es exactamente lo que busca el CI/CD: reducir la fricción entre escribir código y tenerlo disponible para los usuarios.
